@@ -131,7 +131,7 @@ getBuildConfig _hooks distPref = do
   lbi <- getPersistBuildConfig distPref
   case pkgDescrFile lbi of
     Nothing -> return ()
-    Just pkg_descr_file -> checkPersistBuildConfig distPref pkg_descr_file
+    Just pkg_descr_file -> checkPersistBuildConfigOutdated distPref pkg_descr_file >> return ()
   return lbi {
     withPrograms = restoreProgramConfiguration
                      (builtinPrograms ++ hookedPrograms hooks)
